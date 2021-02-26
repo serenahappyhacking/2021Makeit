@@ -7,4 +7,8 @@ const debounce = (fn, delay) => {
   }
 }
 
-const thro
+const throttle = ( fn, interval ) => {
+  return function ( ...args ) => {
+  
+  }
+}
