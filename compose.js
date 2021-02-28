@@ -9,7 +9,20 @@
  */
 
 function composeFunctions(...fns) {
-  fns.reduce((f, g) => (...args) => f(g(...args)))
+	fns.reduce((f, g) => (...args) => f(g(...args)))
 }
+
+const add = (x) => x + 1
+const multiply = (x, y) => x * y
+
+// const yyy = composeFunctions(add(3), multiply(3, 4))
+console.log(composeFunctions(add(3), multiply(3, 4)))
+
+// Array.prototype.reduce((acc, currentValue) => {}, init)
+// fns.reduce(function (f, g) {
+// 	return (...args) => {
+// 		f(g(...args))
+// 	}
+// })
 
 //https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983
