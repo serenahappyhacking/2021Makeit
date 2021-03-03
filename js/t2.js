@@ -25,47 +25,28 @@
 
 window.addEventListener('close', calculateDOMNodes)
 function calculateDOMNodes() {
-	const results = walk(document.body)
+	const map = {
+		count: 0,
+		depth: 1,
+		maxChildrenCount: 0,
+	}
+	const results = walk(document.body, map)
 	navigator.sendBeacon('http://127.0.0.1:10000/beacon', JSON.stringify(results))
 }
-const count = 0,
-	depth = 1,
-	maxChildrenCount = 0
-function countNode(node) {
+function countNode(node, map) {
 	if (node.hasChildNodes) {
-		depth = depth + 1
 		const children = node.childNodes
-		children.length > maxChildrenCount
-			? (maxChildrenCount = children.length)
-			: maxChildrenCount
+		map.depth = map.depth + 1
+		map.count = map.count + children.length
+		map.maxChildrenCount =
+			children.length > map.maxChildrenCount
+				? children.length
+				: map.maxChildrenCount
 		for (let i = 0; i < children.length; i++) {
-			count = count + countNode(children[i])
+			countNode(children[i], map)
 		}
 	}
-	return {
-		count,
-		depth,
-		maxChildrenCount,
-	}
-}
-
-window.addEventListener('close', calculateDOMNodes)
-function calculateDOMNodes() {
-	navigator.sendBeacon('xxxx', walk(document.body))
-}
-
-function calculateDOMNodes() {
-	if (node.hasChildNodes) {
-		depth = depth + 1
-	}
-}
-
-function walk() {
-	return {
-		totalElementsCount,
-		maxDOMTreeDepth,
-		maxChildrenCount,
-	}
+	return map
 }
 
 function calculateDOMNodes() {
