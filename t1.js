@@ -10,13 +10,5 @@
  */
 
 const getIntersection = (...args) => {
-	const arrs = Array.from(...args)
-	arrs = arrs.map((arr) => arr.sort((a, b) => a - b))
-	let left = 0,
-		right = 0
-	for (let i = 0; i < arrs.length - 1; i++) {
-		left = arrs[i][0] <= arrs[i + 1][0] ? arrs[i + 1][0] : left
-		right = arrs[i][1] <= arrs[i + 1][1] ? arrs[i][1] : right
-	}
-	return left < right ? [left, right] : null
+	const array = Array.from(...args)
 }

@@ -25,34 +25,55 @@
 
 window.addEventListener('close', calculateDOMNodes)
 function calculateDOMNodes() {
-  const results = walk(document.body)
-  navigator.sendBeacon('http://127.0.0.1:10000/beacon', JSON.stringify(results))
+	const map = {
+		count: 0,
+		depth: 1,
+		maxChildrenCount: 0,
+	}
+	const results = walk(document.body, map)
+	navigator.sendBeacon('http://127.0.0.1:10000/beacon', JSON.stringify(results))
 }
-function countNode(node) {
-  const count = 0,
-    depth = 1,
-    maxChildrenCount = 0
-  if (node.hasChildNodes) {
-    depth = depth + 1
-    const children = node.childNodes
-    children.length > maxChildrenCount
-      ? (maxChildrenCount = children.length)
-      : maxChildrenCount
-    for (let i = 0; i < children.length; i++) {
-      count = count + countNode(children[i])
-    }
-  }
-  return {
-    count,
-    depth,
-    maxChildrenCount,
-  }
+function countNode(node, map) {
+	if (node.hasChildNodes) {
+		const children = node.childNodes
+		map.depth = map.depth + 1
+		map.count = map.count + children.length
+		map.maxChildrenCount =
+			children.length > map.maxChildrenCount
+				? children.length
+				: map.maxChildrenCount
+		for (let i = 0; i < children.length; i++) {
+			countNode(children[i], map)
+		}
+	}
+	return map
 }
 
-function walk() {
-  return {
-    totalElementsCount,
-    maxDOMTreeDepth,
-    maxChildrenCount,
-  }
+function calculateDOMNodes() {
+	const map = {
+		totalElementsCount: 1,
+		maxDOMTreeDepth: 0,
+		maxChildrenCount: 0,
+	}
+	let depth = 0
+	const root = document.querySelector('html')
+	traverse(root, map, depth)
+	console.log(map)
 }
+function traverse(node, map, depth) {
+	let children = node.childNodes
+	depth++
+	map.maxDOMTreeDepth =
+		depth > map.maxDOMTreeDepth ? depth : map.maxDOMTreeDepth
+	map.maxChildrenCount =
+		node.childElementCount > map.maxChildrenCount
+			? node.childElementCount
+			: map.maxChildrenCount
+	for (let i = 0; i < children.length; i++) {
+		traverse(children[i], map, depth)
+		if (children[i].tagName && children[i].tagName !== 'SCRIPT') {
+			map.totalElementsCount++
+		}
+	}
+}
+calculateDOMNodes()
