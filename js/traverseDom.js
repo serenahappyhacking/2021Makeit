@@ -29,3 +29,14 @@ function traverseDOMByBFS(node) {
 		}
 	}
 }
+
+function traverseDOMByBFS(node) {
+	const depth = 0
+	if (node === null) return depth
+	while (node.children) {
+		depth++
+		Array.from(node.children).forEach((node) => {
+			traverseDOMByBFS(node)
+		})
+	}
+}
