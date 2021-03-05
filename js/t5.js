@@ -12,3 +12,14 @@ obj.push(2)
 // Array.prototype.slice.call(obj)  在 array-like 上使用 array 原生方法
 
 //调用 push 之后会先查找 length 这个属性的值，然后给把这个值作为下标添加元素; 如果是对象的话回去找下标的key。
+
+const abc = ['D', 'workspack', 'ssss']
+abc
+  .map((item, index) => {
+    if (index !== abc.length - 1) {
+      return item.concat('\\').concat('\\')
+    } else {
+      return item
+    }
+  })
+  .join('')
