@@ -1,0 +1,4 @@
+decodeURI()
+decodeURIComponent()
+encodeURI()
+encodeURIComponent()

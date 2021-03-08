@@ -1,4 +1,4 @@
-- CSS 宽高的变化会引起回流(reflow)或重绘(repaint)吗?
+## 回流(reflow) vs 重绘(repaint) 概念
 
 A repaint occurs when changes are made to an elements skin that changes visibly, but **do not affect its layout**.
 
@@ -8,6 +8,4 @@ A reflow is even more critical to performance because it involves changes that *
 
 Examples that cause reflows include: **adding or removing content, explicitly or implicitly** **changing width, height, font-family, font-size** and more.
 
-
-
-https://csstriggers.com/
+这里 https://csstriggers.com/ 具体可以查询每种 css 属性是对 paint 还是 layout 还是 composition 情况产生影响。
