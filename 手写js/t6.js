@@ -6,3 +6,4 @@ const sum2 = arr => {
     if(!obj[element])
   });
 }
+
