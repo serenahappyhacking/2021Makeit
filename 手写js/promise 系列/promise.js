@@ -31,3 +31,5 @@ class Promise {
 // const promise = new Promise((resolve, reject) => {
 
 // })
+
+https://juejin.cn/post/6844903763178684430
