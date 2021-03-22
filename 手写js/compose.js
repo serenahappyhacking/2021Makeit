@@ -8,8 +8,11 @@
  * multiplyAdd(3, 4)
  */
 
+const compose = (...fns) => (res) =>
+  fns.reduce((accum, next) => next(accum), res)
+
 function composeFunctions(...fns) {
-	fns.reduce((f, g) => (...args) => f(g(...args)))
+  fns.reduce((f, g) => (...args) => f(g(...args)))
 }
 
 const add = (x) => x + 1
