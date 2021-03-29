@@ -7,15 +7,15 @@
   e.g
   ```javascript
 
-const arr = ['a','b','c']
-Array.prototype.name = 'serena'
+  const arr = ['a','b','c']
+  Array.prototype.name = 'serena'
 
-for (const i in arr){
-  console.log(i)
-} // 'b','c','a','name' (属性，包括原型链上继承的prop)
+  for (const i in arr){
+    console.log(i)
+  } // 'b','c','a','name' (属性，包括原型链上继承的prop)
 
-for (const i of arr){
-  console.log(i)
-} // 'a','b','c'（值）
+  for (const i of arr){
+    console.log(i)
+  } // 'a','b','c'（值）
 
   ```

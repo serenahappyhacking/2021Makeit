@@ -11,4 +11,36 @@
 
    promise.all 的顺序问题，输入的是什么顺序，返回的结果就是什么顺序。
 
-2.
+2. check 一个对象是否是 Promise 类型
+   * 不能用 instanceof 判断 , 因为不能保证每一个 promise 都是从 Promise 构造器上构造出来的。*
+
+   ```javascript
+   // 1
+   function isPromise(p) {
+      return p && Object.prototype.toString.call(p) === "[object Promise]";
+   }
+
+   // 2
+   function isPromise(value) {
+      return Boolean(value && typeof value.then === "function");
+   }
+
+   // 3 Checking if Promise.resolve(object) == object
+   function isPromise(object) {
+   if (Promise && Promise.resolve) {
+      return Promise.resolve(object) == object;
+   } else {
+      throw "Promise not supported in your environment"; // Most modern browsers support Promises
+   }
+   }
+
+   // 4 Checking if obj is Object & obj.then is a function
+   function isPromise(obj) {
+      return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
+   }
+   ```
+
+
+
+
+   `
