@@ -5,9 +5,9 @@ class cat {
 
 }
 
-target: The prototype of the class that the decorated method belongs to (Foo.prototype)
-name: The name of the decorated method in the class (bar)
-descriptor: A descriptor object, which is the same descriptor object that would be passed to Object.defineProperty
+- target: The **prototype** of the class that the decorated method belongs to (Foo.prototype)
+- name: The name of **the decorated method** in the class (bar)
+- descriptor: A descriptor object, which is the same descriptor object that would be passed to Object.defineProperty
 
 
 ```javascript
