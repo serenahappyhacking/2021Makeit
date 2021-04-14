@@ -24,7 +24,6 @@ function PromiseAll(arr) {
 Promise.all([p1, p2]).then(() => {})
 
 // Promise.allSettled()
-
 const foo = new Promise((resolve, reject) => {
   axios({
     url: 'xxxx',
@@ -35,3 +34,26 @@ foo.then(
   (val) => {},
   (reason) => {}
 )
+
+function PromiseAll(array) {
+  return new Promise((resolve, reject) => {
+    if (!Array.isArray(array)) {
+      reject('传入的参数必须是数组')
+    }
+    const result = []
+    let counter = 0
+    array.forEach((item, index) =>
+      Promise.resolve(item)
+        .then((value) => {
+          result[index] = value
+          counter++
+          if (counter === array.length) {
+            resolve(result)
+          }
+        })
+        .catch((reason) => {
+          reject(reason)
+        })
+    )
+  })
+}
