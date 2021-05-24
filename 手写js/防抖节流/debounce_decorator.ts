@@ -3,7 +3,7 @@ export function debounce(delay: number): Function {
 		const timerKey = `$debounce$${key}`;
 
 		return function (this: any, ...args: any[]) {
-			clearTimeout(this[timerKey]);
+			clearTimeout(this[timerKey]); // 重点在这里，只要不是last call , 定时器就会被清除，fn 就不会被调用。
 			this[timerKey] = setTimeout(() => fn.apply(this, args), delay);
 		};
 	});

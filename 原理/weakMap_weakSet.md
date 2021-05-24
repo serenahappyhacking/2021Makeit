@@ -4,4 +4,3 @@
   没有 iteration, 不能遍历。不能被全部列举出来。
 
 3. The most notable limitation of WeakMap and WeakSet is the **absence of iterations**, and the inability to get all current content.
-4. 

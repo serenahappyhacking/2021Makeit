@@ -50,14 +50,14 @@ function throttle(fn, interval) {
   }
 }
 
-// 防抖，一直点击，最后一次不点了，然后往后顺延一个时间间隔再去触发回调 （一直输入 input 事件，不能每敲一个字母就触发一次，而且有时候是联动的，会打挂服务器；最后直到你输入到某一个字母停下了，在 delay 时间里不再输入了，认为你输入完了，于是触发这个回调。）
+//! 防抖，一直点击，最后一次不点了，然后往后顺延一个时间间隔再去触发回调 （一直输入 input 事件，不能每敲一个字母就触发一次，而且有时候是联动的，会打挂服务器；最后直到你输入到某一个字母停下了，在 delay 时间里不再输入了，认为你输入完了，于是触发这个回调。）
 const debounce = (fn, delay = 0) => {
   let timerId
   return function (...args) {
-    // checking for exsiting calls
+    //! checking for exsiting calls, 只要 timerId 还有值， 那就说明
     if (timerId) {
       clearTimeout(timerId)
-      timerId = null
+      //! clearTimeout(this[timerKey]); // 重点在这里，只要不是last call , 定时器就会被清除，fn 就不会被调用。
     }
     timerId = setTimeout(() => {
       fn.apply(this, ...args)
