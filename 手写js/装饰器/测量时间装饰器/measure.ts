@@ -9,4 +9,4 @@ export function measure(target: any, name: any, descriptor: any) {
   return descriptor
 }
 
-// 现在可以用装饰器写埋点，把埋点独立于业务之外。
+//！现在可以用装饰器写埋点，把埋点独立于业务之外。
